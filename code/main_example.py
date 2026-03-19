@@ -18,15 +18,15 @@ depths = [15, 1000, 3000, 5300, 7000, 9900]
 
 results = []
 
-for filename, depth in zip(filenames, depths):
+for filename, depth in zip(filenames, depths): # zip() function iterates over two lists at once and adds the two values into a tuple
 
     # Load grayscale image
     img = cv2.imread(filename, cv2.IMREAD_GRAYSCALE)
 
     # Vectorized threshold (faster than cv2.threshold)
-    binary = img >= 127
+    binary = img >= 127 # if the pixel value is at least 127, it is given the value of True (white) 
 
-    white = np.sum(binary)
+    white = np.sum(binary) # add how manyvalues are true
     black = binary.size - white
     white_percent = 100 * white / (white + black)
 
