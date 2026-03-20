@@ -14,7 +14,7 @@ filenames = [
     r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_SK658 Slobe ch010140.jpg",
 ]
 
-depths = [15, 1000, 3000, 5300, 7000, 9900]
+depths = [60, 6000, 3000, 9400, 10000, 8300]
 
 results = []
 
@@ -26,17 +26,11 @@ for filename, depth in zip(filenames, depths): # zip() function iterates over tw
     # Vectorized threshold (faster than cv2.threshold)
     binary = img >= 127 # if the pixel value is at least 127, it is given the value of True (white) 
 
-    white = np.sum(binary) # add how manyvalues are true
+    white = np.sum(binary) # add how many values are true
     black = binary.size - white
     white_percent = 100 * white / (white + black)
 
-    results.append({
-        "Filename": filename,
-        "Depth": depth,
-        "White Pixels": white,
-        "Black Pixels": black,
-        "White Percent": white_percent
-    })
+    results.append({"Filename": filename, "Depth": depth, "White Pixels": white, "Black Pixels": black,"White Percent": white_percent})
 
     print(colored(f"{filename}", "red"))
     print(f"White: {white} | Black: {black}")
@@ -47,8 +41,6 @@ df = pd.DataFrame(results)
 df.to_csv("Percent_White_Pixels.csv", index=False)
 
 print("The .csv file 'Percent_White_Pixels.csv' has been created.")
-
-'''the .csv writing subroutine ends here'''
 
 
 ##############
