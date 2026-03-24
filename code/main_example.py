@@ -1,17 +1,20 @@
+#%%
 '''Module 3: count black and white pixels and compute the percentage of white pixels in a .jpg image and extrapolate points'''
 
 import cv2
 import numpy as np
 import pandas as pd
 from termcolor import colored
+import time
 
+#start_time = time.perf_counter()
 filenames = [
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_Sk658 Llobe ch010019.jpg",
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_Sk658 Llobe ch010168.jpg",
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_SK658 Slobe ch010096.jpg",
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_SK658 Slobe ch010098.jpg",
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_SK658 Slobe ch010111.jpg",
-    r"C:\\Users\\karin\\OneDrive - University of Virginia\\Second Year\\Comp BME\\Module-3-Fibrosis\\images\\Chosen Images\\MASK_SK658 Slobe ch010140.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_Sk658 Llobe ch010019.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_Sk658 Llobe ch010168.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_SK658 Slobe ch010096.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_SK658 Slobe ch010098.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_SK658 Slobe ch010111.jpg",
+    r"C:\Users\karin\OneDrive - University of Virginia\Second Year\Comp BME\Module-3-Fibrosis\images\Chosen Images\MASK_SK658 Slobe ch010140.jpg"
 ]
 
 depths = [60, 6000, 3000, 9400, 10000, 8300]
@@ -30,11 +33,11 @@ for filename, depth in zip(filenames, depths): # zip() function iterates over tw
     black = binary.size - white
     white_percent = 100 * white / (white + black)
 
-    results.append({"Filename": filename, "Depth": depth, "White Pixels": white, "Black Pixels": black,"White Percent": white_percent})
+    results.append({"Filename": filename, "Depth": depth,"White Percent": white_percent})
 
-    print(colored(f"{filename}", "red"))
-    print(f"White: {white} | Black: {black}")
-    print(f"{white_percent:.2f}% White | Depth: {depth} microns\n")
+    #print(colored(f"{filename}", "red"))
+    #print(f"White: {white} | Black: {black}")
+    #print(f"{white_percent:.2f}% White | Depth: {depth} microns\n")
 
 # Convert to DataFrame and save
 df = pd.DataFrame(results)
@@ -42,7 +45,10 @@ df.to_csv("Percent_White_Pixels.csv", index=False)
 
 print("The .csv file 'Percent_White_Pixels.csv' has been created.")
 
+#end_time = time.perf_counter()
+#print(f"Execution time: {end_time - start_time:0.4f} seconds")
 
+#%% 
 ##############
 # LECTURE 2: UNCOMMENT BELOW
 

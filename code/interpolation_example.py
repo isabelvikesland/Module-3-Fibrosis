@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 """LINEAR INTERPOLATION"""
 
 # Known points
-x_points = [1, 3]
-y_points = [1, 3]
+x_points = [6, 8]
+y_points = [0, 7]
 
-x1, x2 = 1, 3
-y1, y2 = 1, 3
+x1, x2 = 6, 8
+y1, y2 = 0, 7
 
 # Make the Z and Y matrices
 Z = np.array([[1, x1], [1, x2]])
@@ -22,12 +22,12 @@ print("A = ", A)
 
 # # Compute one specific point (x=2)
 a1, a2 = A
-x_value = 2
+x_value = 7
 y_value = a1 + a2 * x_value
 print("At x = 2, y =", y_value)
 
 # # Plot the line
-x = np.linspace(0, 5, 100)
+x = np.linspace(0, 10, 100)
 y = a1 + a2 * x 
 plt.plot(x, y)
 
