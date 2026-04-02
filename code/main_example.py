@@ -163,16 +163,16 @@ fig, axs = plt.subplots(3, 1) # make 3 plots
 
 # plot without interpolated points
 axs[0].scatter(graphed_depths, graphed_white_percents, marker='o', linestyle='-', color='blue')
-axs[0].set_title('Plot of depth of image vs percentage white pixels')
-axs[0].set_xlabel('depth of image (in microns)')
-axs[0].set_ylabel('white pixels as a percentage of total pixels')
+axs[0].set_title('Depth of Image vs % White pixels')
+axs[0].set_xlabel('Depth of Image (microns)')
+axs[0].set_ylabel('% White Pixels')
 axs[0].grid(True)
 
 # plot with linearly interpolated points
 axs[1].scatter(depths_i1, white_percents_i1, marker='o',linestyle='-', color='blue')
-axs[1].set_title('Plot of depth of image vs percentage white pixels with interpolated point (in red)')
-axs[1].set_xlabel('depth of image (in microns)')
-axs[1].set_ylabel('white pixels as a percentage of total pixels')
+axs[1].set_title('With Interpolated Point - Linear')
+axs[1].set_xlabel('Depth of image (in microns)')
+axs[1].set_ylabel('% White Pixels')
 axs[1].grid(True)
 
 for i in range(number_depths):
@@ -180,9 +180,9 @@ for i in range(number_depths):
 
 # plot for quadratically interpolated points
 axs[2].scatter(depths_i2, white_percents_i2, marker='o',linestyle='-', color='blue')
-axs[2].set_title('Plot of depth of image vs percentage white pixels with interpolated point (in red)')
-axs[2].set_xlabel('depth of image (in microns)')
-axs[2].set_ylabel('white pixels as a percentage of total pixels')
+axs[2].set_title('With Interpolated Point - Quadratic')
+axs[2].set_xlabel('Depth of image (in microns)')
+axs[2].set_ylabel('% White Pixels')
 axs[2].grid(True)
 
 for i in range(number_depths):
@@ -217,10 +217,10 @@ def find_closest_point(depths, white_percentages):
         #calculate difference from best known depth
         #print(f"white percentages: {white_percentages}")
         subtraction = abs(white_percentages[-(counter + 1)] - white_percents[index])
-        print(f"At depth {depth}, the interpolated white pixel percentage is {white_percentages[-(counter+1)]}. The closest known depth is {best_depth}, which is {difference} micrometers away. At that point, the percentage of white pixels is {white_percents[index]}%, which is {diff_wp}% away from the interpolated value")
+        print(subtraction)
+        #print(f"At depth {depth}, the interpolated white pixel percentage is {white_percentages[-(counter+1)]}. The closest known depth is {best_depth}, which is {difference} micrometers away. At that point, the percentage of white pixels is {white_percents[index]}%, which is {diff_wp}% away from the interpolated value")
         counter += 1
     #print(f"best depth: {best_depths}")
-
     
     return best_depths, indices
 
@@ -231,4 +231,5 @@ find_closest_point(depths_i1,white_percents_i1)
 find_closest_point(depths_i2,white_percents_i2)
 # Adjust layout to prevent overlap
 plt.tight_layout()
+plt.subplots_adjust(left=0.12)
 plt.show()
