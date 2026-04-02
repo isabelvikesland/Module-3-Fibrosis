@@ -216,6 +216,7 @@ def find_closest_point(depths, white_percentages):
         
         #calculate difference from best known depth
         #print(f"white percentages: {white_percentages}")
+        subtraction = abs(white_percentages[-(counter + 1)] - white_percents[index])
         print(f"At depth {depth}, the interpolated white pixel percentage is {white_percentages[-(counter+1)]}. The closest known depth is {best_depth}, which is {difference} micrometers away. At that point, the percentage of white pixels is {white_percents[index]}%, which is {diff_wp}% away from the interpolated value")
         counter += 1
     #print(f"best depth: {best_depths}")
